@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="kaist_yyj" type="run_submap_generator" name="map_generator_node"/>
+</launch>

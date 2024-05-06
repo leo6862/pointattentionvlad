@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/home/yyj/catkin_ws/devel/include/**",
+                "/opt/ros/noetic/include/**",
+                "/home/yyj/catkin_ws/src/VINS-Mono/camera_model/include/**",
+                "/home/yyj/catkin_ws/src/FAST_LIO/include/**",
+                "/home/yyj/catkin_ws/src/file_player_complex_urban/include/**",
+                "/home/yyj/catkin_ws/src/gnss_comm-main/include/**",
+                "/home/yyj/catkin_ws/src/kaist_yyj/include/**",
+                "/home/yyj/catkin_ws/src/LeGO-LOAM/LeGO-LOAM/include/**",
+                "/home/yyj/catkin_ws/src/lidar_align-master/include/**",
+                "/home/yyj/catkin_ws/src/LiDAR_IMU_Init-main/include/**",
+                "/home/yyj/catkin_ws/src/LIO-SAM/include/**",
+                "/home/yyj/catkin_ws/src/test_bool_msg/include/**",
+                "/usr/include/**",
+                "${workspaceFolder}/include",
+                "/usr/include/pcl-1.10"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14"
+        }
+    ],
+    "version": 4
+}

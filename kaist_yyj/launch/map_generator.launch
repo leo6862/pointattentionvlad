@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find file_player)/launch/file_player.launch"/>
+  <node pkg="kaist_yyj" type="map_generator_node" name="map_generator_node"/>
+  <node pkg="rviz" type="rviz" name="rviz_node" args="-d $(find kaist_yyj)/rviz/rviz.rviz"/>
+</launch>

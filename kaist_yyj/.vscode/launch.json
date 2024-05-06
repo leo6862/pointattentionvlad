@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ROS: Launch",
+      "request": "launch",
+      "target": "/home/yyj/catkin_ws/src/kaist_yyj/launch/submap_generator.launch",
+      "launch": [
+        "rviz",
+        "gz",
+        "gzclient",
+        "gzserver"
+      ],
+      "type": "ros"
+    }
+  ]
+}
