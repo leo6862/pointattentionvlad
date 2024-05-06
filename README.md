@@ -22,7 +22,7 @@ docker run --gpus all --name torch_1.11  -it -v /tmp/.X11-unix:/tmp/.X11-unix -v
 ```
 
 ### dataset processing  
-N*3 point cloud (x\y\z)  to N * 19(x\y\z\ind1\ind2\...\ind16) ind is the index of the nearest point of the point cloud.
+(N,3) point cloud (x\y\z)  to (N,19) point cloud (x\y\z\ind1\ind2\...\ind16) ind is the index of the nearest point of the point cloud.
 This is for fast nearest neighbor search in the algorithm, no need to use a kd-tree for nn-search in the middle of the algorithm since nearest neighbor indices have been pre-calculated.
 ```
 python dataset_preprocess.py
@@ -69,7 +69,7 @@ cd YOUR_PATH
 this step is used to unify the directory structure. For better kaist dataset usage.
 3. run `kaist_yyj` package `run_submap_generator` node to use the VLP lidar in KAIST dataset to generate point cloud submaps.
 
-4. n*3 cloud to n*19 cloud. pre-neighbor search.
+4. (n,3) cloud to (n,19) cloud to skip online kd-tree based nearest neighbor search.
 ```
 python kaist_yyj/run_submap_generator/scripts/generate_knn_data.py
 ```
@@ -85,3 +85,12 @@ python ./generating_testing_tuple.py
 ```
 python kaist_train.py 
 ```
+
+
+
+### Pre-trained model Download 
+1. pretrained model on Benchmark dataset 
+https://drive.google.com/file/d/1XMLPiJpQBRLBN-ECdYHbcL_ADHNEDZT9/view?usp=drive_link
+
+2. pretrained model on KAIST dataset 
+https://drive.google.com/file/d/10ww7S1oWum6JYzt9Rz29e1T-FeEYtc_5/view?usp=drive_link
