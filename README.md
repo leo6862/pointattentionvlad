@@ -6,7 +6,6 @@ this code is mainly based on : https://github.com/cattaneod/PointNetVlad-Pytorch
 
 Benchmark dataset Dowload address： https://drive.google.com/open?id=1Wn1Lvvk0oAkwOUwR0R6apbrekdXAUg7D
 
-code for experiments on KAIST will be available soon. code for processing the raw KAIST　dataset to trainable data for neural network is based on c++， it wall be available soon.
 
 ## Install using docker 
 docker is recommended for setting up the environment. All the scripts are recommended to run in the docker container.
