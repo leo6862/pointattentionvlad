@@ -9,7 +9,7 @@ int main(int argc,char** argv) {
   std::vector<std::string> seqs = node["seqs"].as<vector<string>>();
   
 
-  //TODO  load seqs from yaml
+  // load seqs from yaml
   for(int seq_ind = 0;seq_ind < seqs.size();seq_ind++) {
     LOG(INFO) << "processing : " << seqs[seq_ind];
     Submap_generator map_generator(node,seqs[seq_ind]);

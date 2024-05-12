@@ -184,17 +184,6 @@ target_link_libraries(run_submap_generator
   ${YAML_CPP_LIBRARIES}
   -lglog
 )
-add_executable(vis
-src/graduation_thesis.cpp
-src/submap_generator.cpp
-)
-
-target_link_libraries(vis
-  ${PCL_LIBRARIES}
-  ${catkin_LIBRARIES}
-  ${YAML_CPP_LIBRARIES}
-  -lglog
-)
 
 # add_executable(test_fps
 # src/test_fps.cpp

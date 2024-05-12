@@ -141,8 +141,6 @@ __attribute__((optimize("O0"))) bool Submap_generator::run() {
     // add into cloud_data_q 
     cloud_data_q.push_front(get_cloud_data_from_file(current_cloud_file,current_cloud_pose));
     // LOG(INFO) << "current cloud size = " << cloud_data_q[0].cloud_ptr->size();
-    //可能还 需要修改一下 submap_cloud_ 关于 last_submap_pose & stamp 的一些设置方法。
-    // 好像不用改。。。。。
     PointCloudPtr submap_cloud_(new PointCloud);
     if(!gen_submap(submap_cloud_)) {
       continue;
@@ -388,7 +386,6 @@ bool Submap_generator::post_process(PointCloudPtr _submap_cloud) {
   //   _submap_cloud->points[p_ind].z -= centroid.z(); 
   // }
 
-  //不进行地面滤波了 使用 直通滤波 对 xy 维度进行滤波'
   double half_submap_cube_size = submap_cube_size / 2.;
   pcl::PassThrough<Point> pass_x; // 声明直通滤波
 	pass_x.setInputCloud(_submap_cloud); // 传入点云数据
@@ -648,7 +645,6 @@ void Submap_generator::graduation_thesis_vis() {
       continue;
     }
 
-    //TODO 将当前 原始的点云地图保存成 pcd文件，保存在某个文件夹中
     static int count = 0;
     string out_dir = "/home/yyj/catkin_ws/src/kaist_yyj/graduation_thesis";
     string file_name = out_dir + "/submap_" + std::to_string(count++) + ".pcd";

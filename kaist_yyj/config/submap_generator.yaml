@@ -1,4 +1,4 @@
-######################### Ground_filter ######################
+######################### Ground_filter ###################### not used
 do_ground_filtering: true
 clip_height: 0.4
 sensor_height: 1.5
@@ -11,8 +11,7 @@ th_dist: 0.3
 
 ######################### Submap_genrator ######################
 # seqs: [urban00,urban01,urban02,urban03,urban04,urban05,urban07,urban08,urban09,urban10,urban12,urban13,urban14,urban15,urban16,urban17]
-seqs: [urban11] #TODO 在 pop os 的电脑上 只有urban11可用
-#06 是使用 80 的cube size 来成功创建的 , 肉眼看了下 ， 有点问题。切的有点问题
+seqs: [urban11] 
 seq_data_root: /home/yyj/dl_dataset/kaist/
 submap_frame_num: 50 #调用最新关键帧的前多少帧组成submap
 submap_cube_size: 50 # submap cube的 完整边长  not used 

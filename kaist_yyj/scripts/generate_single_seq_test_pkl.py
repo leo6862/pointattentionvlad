@@ -21,7 +21,7 @@ dict = {0 : {"query" : 文件路径 ('oxford/2014-05-19-13-20-57/pointcloud_20m_
              
 1. 将所有的 seq 的 stamp 都读到内存中 [(stamp , pose)]
 2. 初始化字典 queries = {0...n : {'query' : [] , 'positives' : [] , 'negatives' : []}}  像上文中的 dict 
-3. 因为我每个seq 中的submap数量不多所以直接 一个个暴力的比较就行
+3. 因为每个seq 中的submap数量不多所以直接 一个个暴力的比较就行
 4. 保存 dict
 """
 
