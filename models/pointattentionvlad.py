@@ -8,16 +8,6 @@ from utils.pointnet_util import *
 import torch.nn.functional as F
 
 
-"""
-    !在yyj_model_4的基础上加入了 Global Attention 
-    0. input xyz : [B N 3] ;input index : [B N 16]
-    1. fps sampling & group points : [B N' 16 3] ，N' = 2000
-    2. conv * 2 & max pooling  ： [B N' 16 3] -> [B N' 16 100] -> [B N' 16 300] -> max pooling [B N' 300]
-    3. 
-
-"""
-
-
 def idx_points(points, idx):
     """
 
@@ -183,8 +173,8 @@ class Local_Attention(nn.Module):
         attn =  self.fc_attn(q.unsqueeze(-2) - k + pos_enc)
         attn = F.softmax(attn / np.sqrt(k.size(-1)), dim=-2)  # b x n x k x f 
 
-        res = torch.einsum('bmnf,bmnf->bmf',attn,v + pos_enc) #yyj 这个东西的意思是 对应位相乘 在n维度上相加
-        res = self.fc2(res) + x[:,:,0,:] #这里做了一个 resnet的操作
+        res = torch.einsum('bmnf,bmnf->bmf',attn,v + pos_enc) 
+        res = self.fc2(res) + x[:,:,0,:] 
         return res 
 def model_structure(model):
     blank = ' '
