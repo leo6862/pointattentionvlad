@@ -92,8 +92,9 @@ cfg.TRIPLET_USE_BEST_POSITIVES = FLAGS.triplet_use_best_positives
 cfg.LOSS_LAZY = FLAGS.loss_not_lazy
 cfg.LOSS_IGNORE_ZERO_BATCH = FLAGS.loss_ignore_zero_batch
 
-# cfg.TRAIN_FILE = '/root/autodl-tmp/kaist_v3/training_tuple_v3.pickle'
-# cfg.TEST_FILE = '/root/autodl-tmp/kaist_v3/testing_tuple.pickle'
+#TODO  modify this
+cfg.TRAIN_FILE = '/home/yyj/dl_dataset/kaist/training_tuple_v3.pickle'
+cfg.TEST_FILE = '/home/yyj/dl_dataset/kaist/testing_tuple.pickle'
 
 cfg.LOG_DIR = FLAGS.log_dir
 if not os.path.exists(cfg.LOG_DIR):
@@ -130,11 +131,6 @@ def log_string(out_str):
 #
 
 def evaluate_model_kaist_single_seq(model):
-    """
-        1. 读取 testing pkl
-        2. 将每个testing pkl中的文件读取出来
-        3. 
-    """
     one_percent_recalls = []
     top_one_recalls = []
     data_root = "/home/yyj/dl_dataset/kaist_v2/"

@@ -1,5 +1,3 @@
-#! 这是yyj调用 nn_neightbor_dataset 的代码
-#nn_neightbor_dataset 是在原来 benchmark data set 的基础上 将原本4096*3 的点云变成了 4096 * 19 ， 增加了每个点的最近16个点的index
 import argparse
 import importlib
 import math
@@ -16,7 +14,7 @@ import config as cfg
 import evaluate
 import loss.pointnetvlad_loss as PNV_loss
 
-import models.pointattentionvlad as YYJ_model_4_local_attention
+import models.pointattentionvlad as PointAttentionVLAD
 import torch.nn as nn
 from loading_pointclouds import *
 from tensorboardX import SummaryWriter
@@ -159,7 +157,7 @@ def train():
     train_writer = SummaryWriter(os.path.join(cfg.LOG_DIR, 'train'))
     #test_writer = SummaryWriter(os.path.join(cfg.LOG_DIR, 'test'))
 
-    model = YYJ_model_4_local_attention.PointAttentionVLAD()
+    model = PointAttentionVLAD.PointAttentionVLAD()
     model = model.to(device)
 
     parameters = filter(lambda p: p.requires_grad, model.parameters())
