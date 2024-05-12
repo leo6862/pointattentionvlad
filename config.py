@@ -6,7 +6,7 @@ OUTPUT_FILE = "results/results.txt"
 
 LOG_DIR = 'log/'
 
-YYJ_EVAL_SIZE = 70
+EVAL_SIZE = 70
 #DATASET_FOLDER = '/home/yyj/dl_dataset/benchmark_datasets/'
 DATASET_FOLDER = '/home/yyj/dl_dataset/nn_neighbor_benchmark_dataset/'
 BATCH_NUM_QUERIES = 2

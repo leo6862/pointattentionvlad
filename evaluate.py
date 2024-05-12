@@ -9,9 +9,7 @@ import os
 import sys
 import torch
 import torch.nn as nn
-print("torch.cuda.is_available() = {}".format(torch.cuda.is_available()))
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print('device = {}'.format(device))
 from torch.autograd import Variable
 from torch.backends import cudnn
 
@@ -103,18 +101,13 @@ def evaluate_model(model):
 
 
 def evaluate_model_kaist(model):
-    """
-        1. 读取 testing pkl
-        2. 将每个testing pkl中的文件读取出来
-        3. 
-    """
-    print("cfg.EVAL_DATABASE_FILE = {}".format(cfg.EVAL_DATABASE_FILE))
+    # print("cfg.EVAL_DATABASE_FILE = {}".format(cfg.EVAL_DATABASE_FILE))
     with open(cfg.EVAL_DATABASE_FILE, 'rb') as handle:
         testing_pkl = pickle.load(handle)
         print("Queries Loaded.")
         features = []
-        for i in range(len(testing_pkl.keys())//cfg.YYJ_EVAL_SIZE):
-            file_idxs = range(i * cfg.YYJ_EVAL_SIZE , (i+1) * cfg.YYJ_EVAL_SIZE)
+        for i in range(len(testing_pkl.keys())//cfg.EVAL_SIZE):
+            file_idxs = range(i * cfg.EVAL_SIZE , (i+1) * cfg.EVAL_SIZE)
             file_names = []
             for idx in file_idxs:
                 file_names.append(testing_pkl[idx]["query"])
@@ -131,8 +124,8 @@ def evaluate_model_kaist(model):
             for feature_ind in range(len(out)):
                 features.append(out[feature_ind])
             
-        #TODO Handle ege case 
-        index_edge = len(testing_pkl) // cfg.YYJ_EVAL_SIZE * cfg.YYJ_EVAL_SIZE
+        # Handle ege case 
+        index_edge = len(testing_pkl) // cfg.EVAL_SIZE * cfg.EVAL_SIZE
         if index_edge < len(testing_pkl.keys()):
             file_names = []
             for edge_ind in range(index_edge,len(testing_pkl.keys())):
@@ -164,10 +157,6 @@ def evaluate_model_kaist(model):
             distances, indices = kd_tree.query(
             current_feature,k=30)
             indices = np.squeeze(indices)
-            # print(indices.shape)
-            print("ind = {}".format(ind))
-            print("indices[0] = {}".format(indices[0]))
-            print("indices[1] = {}".format(indices[1]))
             if indices[1] in positives:
                 top_1_success_num += 1
             indices = indices.tolist()
@@ -184,7 +173,7 @@ def evaluate_model_kaist(model):
         recall_at_n = [recall / float(len(testing_pkl.items()))*100 for recall in recall_at_n]
         
         print(recall_at_n)
-        #TODO 输出结果
+        #输出结果
         with open(cfg.OUTPUT_FILE, "w") as output:
             output.write("Average Recall @N:\n")
             output.write(str(recall_at_n))
@@ -354,7 +343,6 @@ def get_recall_yyj(m, n, DATABASE_VECTORS, QUERY_VECTORS, QUERY_SETS,DATABASE_SE
                 break
         # print('indices[0] = {}'.format(indices[0]))
         # print('QUERY_SETS[m] = {}'.format(QUERY_SETS[m]))
-        #yyj 新增 
         res = indices[0].tolist()
         # for kk in range(len(res)):
         #     print(' top {} candidates  =  \n {}'.format(kk,DATABASE_SETS[m][indices[0][kk]]))
@@ -405,9 +393,6 @@ def get_recall(m, n, DATABASE_VECTORS, QUERY_VECTORS, QUERY_SETS):
                     top1_similarity_score.append(similarity)
                 recall[j] += 1
                 break
-        print('indices[0] = {}'.format(indices[0]))
-        # print('QUERY_SETS[m] = {}'.format(QUERY_SETS[m]))
-        #yyj 新增 
         res = indices[0].tolist()
         for kk in range(len(res)):
             print(' top {} candidates  =  \n {}'.format(kk,QUERY_SETS[m][indices[0][kk]]))

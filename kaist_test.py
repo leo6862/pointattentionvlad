@@ -145,8 +145,8 @@ def evaluate_model_kaist_single_seq(model):
             print("Queries Loaded.")
             features = []
             all_data_size += len(testing_pkl.keys())
-            for i in range(len(testing_pkl.keys())//cfg.YYJ_EVAL_SIZE):
-                file_idxs = range(i * cfg.YYJ_EVAL_SIZE , (i+1) * cfg.YYJ_EVAL_SIZE)
+            for i in range(len(testing_pkl.keys())//cfg.EVAL_SIZE):
+                file_idxs = range(i * cfg.EVAL_SIZE , (i+1) * cfg.EVAL_SIZE)
                 file_names = []
                 for idx in file_idxs:
                     file_names.append(testing_pkl[idx]["query"])
@@ -164,7 +164,7 @@ def evaluate_model_kaist_single_seq(model):
                     features.append(out[feature_ind])
                 
             #Handle ege case 
-            index_edge = len(testing_pkl) // cfg.YYJ_EVAL_SIZE * cfg.YYJ_EVAL_SIZE
+            index_edge = len(testing_pkl) // cfg.EVAL_SIZE * cfg.EVAL_SIZE
             if index_edge < len(testing_pkl.keys()):
                 file_names = []
                 for edge_ind in range(index_edge,len(testing_pkl.keys())):
